@@ -1,3 +1,9 @@
+# GAE
+/sample/gae/data/**
+/sample/gae/libs/
+# gae配置文件需要
+!/sample/gae/data/_config.ini
+
 *.pac
 *.pyc
 __pycache__/

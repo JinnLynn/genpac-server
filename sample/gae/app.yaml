@@ -1,0 +1,13 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+    - url: /.*
+      script: main.app
+
+# https://stackoverflow.com/questions/16192916/importerror-no-module-named-ssl-with-dev-appserver-py-from-google-app-engine
+# https://cloud.google.com/appengine/docs/standard/python/sockets/ssl_support
+libraries:
+    - name: ssl
+      version: latest
