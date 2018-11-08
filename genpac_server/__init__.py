@@ -21,7 +21,7 @@ from genpac.util import conv_bool, conv_list, conv_path
 from .utils import FmtDomains, print_and_raise
 from .build import start_watch, build
 
-__version__ = '1.0a1'
+__version__ = '1.0a2'
 __author__ = 'JinnLynn <eatfishlin@gmail.com>'
 __license__ = 'The MIT License'
 __copyright__ = 'Copyright 2018 JinnLynn'

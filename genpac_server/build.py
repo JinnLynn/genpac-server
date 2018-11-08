@@ -44,7 +44,7 @@ def watch(app):
                         print('GenPAC: {} changed.'.format(filename))
                         build(app)
             autobuild_interval = app.config.options.autobuild_interval
-            passed = time.time() - app.config.options.last_builded
+            passed = time.time() - app.extensions['genpac'].last_builded
             if autobuild_interval > 0 and passed > autobuild_interval:
                 build(app)
             time.sleep(1)
