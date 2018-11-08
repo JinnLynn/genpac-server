@@ -1,0 +1,29 @@
+*.pac
+*.pyc
+__pycache__/
+tmp/
+
+# 测试相关
+/.python-version
+/.tox
+/.cache
+/.coverage
+/htmlcov/
+
+*.egg-info
+build/
+dist/
+
+# Windows
+[Dd]esktop.ini
+[Tt]humbs.db
+$RECYCLE.BIN/
+
+# MacOSX
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Jetbrains IDE
+.idea/
