@@ -1,18 +1,3 @@
-'''
-|pypi version| |pypi license|
-
-Web server for GenPAC.
-
-For more information, please visit `project page`_.
-
-
-.. |pypi version| image:: https://img.shields.io/pypi/v/genpac-server.svg
-   :target: https://pypi.org/project/genpac-server/
-.. |pypi license| image:: https://img.shields.io/pypi/l/genpac-server.svg
-   :target: https://pypi.org/project/genpac-server/
-
-.. _project page: https://github.com/JinnLynn/genpac-server/
-'''
 import re
 import ast
 from setuptools import setup
@@ -23,6 +8,9 @@ with open('genpac_server/__init__.py', 'rb') as f:
     version = str(ast.literal_eval(_version_re.search(
         f.read().decode('utf-8')).group(1)))
 
+with open('README.md', 'r') as fh:
+    long_description = fh.read()
+
 
 setup(
     name='genpac-server',
@@ -32,7 +20,8 @@ setup(
     author_email='eatfishlin@gmail.com',
     url='https://github.com/JinnLynn/genpac-server',
     description='web server for genpac.',
-    long_description=__doc__,
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     packages=['genpac_server'],
     package_data={
         'genpac_server': ['templates/*', 'static/*']
@@ -47,7 +36,6 @@ setup(
     classifiers=[
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
     ],
 )
