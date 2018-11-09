@@ -20,7 +20,7 @@
             <span class="ip"  id="abroad" title="国外"></span>
             <span class="ip" id="gfwed" title="GFWed"></span>
         </p>
-        <p>说明: 测试任意网址是否在规则列表中。</p>
+        <p>说明: 测试任意网址是否在规则列表中(仅对域名匹配)。</p>
         <p>灰色: 表示不存在任何列表中</p>
         <p><span class="result-gfwed">红色</span>: 表示在过滤列表中</p>
         <p><span class="result-ignored">绿色</span>: 表示在忽略列表中</p>
@@ -90,6 +90,8 @@
                     $(sel).text('-');
                 });
             };
+            // 设置超时
+            $.ajaxSetup({timeout: 8000});
             _fetch("{{ ip_srvs['inland'] }}", '#inland');
             _fetch("{{ ip_srvs['abroad'] }}", '#abroad');
             _fetch("{{ ip_srvs['gfwed'] }}", '#gfwed');
