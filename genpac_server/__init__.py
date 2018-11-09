@@ -15,13 +15,13 @@ import flask
 from flask import Flask, Blueprint, url_for
 from flask_compress import Compress
 import genpac
-from genpac import GenPAC
+from genpac import GenPAC, FatalError
 from genpac.util import conv_bool, conv_list, conv_path
 
 from .utils import FmtDomains, print_and_raise
 from .build import start_watch, build
 
-__version__ = '1.0a2'
+__version__ = '1.0b1'
 __author__ = 'JinnLynn <eatfishlin@gmail.com>'
 __license__ = 'The MIT License'
 __copyright__ = 'Copyright 2018 JinnLynn'
@@ -44,7 +44,9 @@ def create_app(config_file=None):
     from . import views
     app = Flask(__name__)
 
+    config_file = config_file or os.environ.get('GENPAC_CONFIG')
     read_config(app, config_file)
+
     app.register_blueprint(main)
     Compress(app)
 
@@ -62,6 +64,9 @@ def create_app(config_file=None):
 
 
 def read_config(app, config_file):
+    if not config_file or not os.path.exists(conv_path(config_file)):
+        raise FatalError('config file {} missing.'.format(config_file or ''))
+
     options = copy.deepcopy(_DEFAULT_OPTIONS)
     cfg = {}
 
@@ -83,11 +88,7 @@ def read_config(app, config_file):
         val = _val(key, default, *convs)
         setattr(options, attr, val)
 
-    value = config_file or os.environ.get('GENPAC_CONFIG')
-    value = conv_path(value)
-    if not os.path.exists(value):
-        print_and_raise('GenPAC Error: config file {} missing.'.format(value))
-    options.config_file = value
+    options.config_file = conv_path(config_file)
 
     config = genpac.Config()
     config.read(options.config_file)
