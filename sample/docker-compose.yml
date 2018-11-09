@@ -1,0 +1,10 @@
+version: "3"
+services:
+    genpac-server:
+        image: jinnlynn/genpac-server
+        restart: always
+        # 挂载配置文件
+        # volumes:
+        #     - /YOUR/CONFIG/FILE/PATH:/app/etc/config.ini
+        ports:
+            - 8080:80
